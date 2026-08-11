@@ -11,6 +11,8 @@ import {
   Briefcase,
   Settings,
   LogOut,
+  Shield,
+  FolderOpen,
 } from 'lucide-react';
 
 const brandNav = [
@@ -26,13 +28,20 @@ const influencerNav = [
   { href: '/influencer/collaborations', label: 'Collaborations', icon: Briefcase },
 ];
 
+const adminNav = [
+  { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/creators', label: 'Creators', icon: Users },
+  { href: '/admin/enquiries', label: 'Enquiries', icon: MessageSquare },
+  { href: '/admin/categories', label: 'Categories', icon: FolderOpen },
+];
+
 export function DashboardLayout() {
   const { user, logout } = useAuth();
   const location = useLocation();
 
   if (!user) return <Navigate to="/login" replace />;
 
-  const navItems = user.role === 'brand' ? brandNav : influencerNav;
+  const navItems = user.role === 'brand' ? brandNav : user.role === 'admin' ? adminNav : influencerNav;
 
   return (
     <div className="flex min-h-screen bg-neutral-50">

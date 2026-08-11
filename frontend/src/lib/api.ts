@@ -155,3 +155,24 @@ export const publicApi = {
   }) =>
     api.post<{ enquiry: import('@/types').Enquiry; message: string }>('/public/enquiries', data, false),
 };
+
+// Admin
+export const adminApi = {
+  getStats: () => api.get<import('@/types').AdminStats>('/admin/stats'),
+  getEnquiries: (page = 1, status?: string) =>
+    api.get<import('@/types').PaginatedResponse<import('@/types').AdminEnquiry>>('/admin/enquiries', { page, status }),
+  updateEnquiry: (id: number, data: { status?: string; admin_notes?: string }) =>
+    api.put<{ enquiry: import('@/types').AdminEnquiry; message: string }>(`/admin/enquiries/${id}`, data),
+  getCreators: (page = 1, search?: string, status?: string) =>
+    api.get<import('@/types').PaginatedResponse<import('@/types').InfluencerProfile & { user_id: number; email: string; role: string; status: string }>>('/admin/creators', { page, search, status }),
+  updateCreator: (userId: number, data: { status?: string; [key: string]: unknown }) =>
+    api.put<{ profile: import('@/types').InfluencerProfile; message: string }>(`/admin/creators/${userId}`, data),
+  getCategories: () =>
+    api.get<{ categories: import('@/types').Category[] }>('/admin/categories'),
+  createCategory: (data: { name: string; slug: string; description?: string; icon?: string }) =>
+    api.post<{ category: import('@/types').Category; message: string }>('/admin/categories', data),
+  updateCategory: (id: number, data: { name?: string; slug?: string; description?: string; icon?: string }) =>
+    api.put<{ category: import('@/types').Category; message: string }>(`/admin/categories/${id}`, data),
+  deleteCategory: (id: number) =>
+    api.delete<{ message: string }>(`/admin/categories/${id}`),
+};

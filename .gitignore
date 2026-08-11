@@ -1,21 +1,41 @@
+```
+# TypeScript/JavaScript build artifacts
+*.tsbuildinfo
+
 # Dependencies
 node_modules/
 
-# Build files
-dist/
-build/
-
-# Environment / secrets
+# Environment variables
 .env
-.env.*
-!.env.example
-
-# macOS
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
+.env.local
+*.env.*
 
 # Logs
 *.log
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache (if present in project)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build outputs (if present)
+dist/
+build/
+target/
+```

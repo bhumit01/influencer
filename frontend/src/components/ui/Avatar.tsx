@@ -7,9 +7,10 @@ interface AvatarProps {
   lastName?: string | null;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  name?: string;
 }
 
-export function Avatar({ src, alt, firstName, lastName, size = 'md', className }: AvatarProps) {
+export function Avatar({ src, alt, firstName, lastName, size = 'md', className, name }: AvatarProps) {
   const sizes = {
     sm: 'h-8 w-8 text-xs',
     md: 'h-10 w-10 text-sm',
@@ -27,6 +28,8 @@ export function Avatar({ src, alt, firstName, lastName, size = 'md', className }
     );
   }
 
+  const displayName = name || `${firstName || ''} ${lastName || ''}`.trim();
+
   return (
     <div
       className={cn(
@@ -35,7 +38,20 @@ export function Avatar({ src, alt, firstName, lastName, size = 'md', className }
         className
       )}
     >
-      {getInitials(firstName, lastName)}
+      {displayName ? getInitialsFromName(displayName) : '?'}
     </div>
   );
+}
+
+function getInitialsFromName(name: string): string {
+  const parts = name.split(' ').filter(Boolean);
+  if (parts.length === 0) return '?';
+  const firstPart = parts[0];
+  if (!firstPart || parts.length === 1) {
+    return firstPart ? firstPart.charAt(0).toUpperCase() : '?';
+  }
+  const lastPart = parts[parts.length - 1];
+  const first = firstPart.charAt(0);
+  const last = lastPart ? lastPart.charAt(0) : '';
+  return (first + last).toUpperCase();
 }
