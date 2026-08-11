@@ -27,6 +27,12 @@ import { EditProfile } from '@/pages/influencer/EditProfile';
 import { Gallery } from '@/pages/influencer/Gallery';
 import { Collaborations } from '@/pages/influencer/Collaborations';
 
+// Admin pages
+import { AdminDashboard } from '@/pages/admin/Dashboard';
+import { AdminCreators } from '@/pages/admin/Creators';
+import { AdminEnquiries } from '@/pages/admin/Enquiries';
+import { AdminCategories } from '@/pages/admin/Categories';
+
 function AuthLoader({ children }: { children: React.ReactNode }) {
   const { setUser, setToken, isLoading, setLoading } = useAuth();
 
@@ -90,6 +96,14 @@ export default function App() {
             <Route path="edit-profile" element={<EditProfile />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="collaborations" element={<Collaborations />} />
+          </Route>
+
+          {/* Admin dashboard */}
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="creators" element={<AdminCreators />} />
+            <Route path="enquiries" element={<AdminEnquiries />} />
+            <Route path="categories" element={<AdminCategories />} />
           </Route>
         </Routes>
       </AuthLoader>

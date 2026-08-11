@@ -172,3 +172,7 @@ INSERT INTO categories (name, slug, description) VALUES
 ('Education & Science', 'education-science', 'Teachers, scientists, educational content'),
 ('Sports & Outdoors', 'sports-outdoors', 'Athletes, outdoor adventurers, sports coaches'),
 ('Photography & Art', 'photography-art', 'Photographers, digital artists, illustrators');
+
+-- Insert default admin user (password: admin123)
+INSERT INTO users (email, password, role, status) VALUES
+('admin@influencehub.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'active');

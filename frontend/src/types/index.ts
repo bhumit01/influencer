@@ -7,6 +7,20 @@ export interface User {
   profile: BrandProfile | InfluencerProfile | null;
 }
 
+export interface AdminStats {
+  total_influencers: number;
+  total_brands: number;
+  total_enquiries: number;
+  pending_enquiries: number;
+  total_categories: number;
+}
+
+export interface AdminEnquiry extends Enquiry {
+  brand_email?: string;
+  company_name?: string;
+  admin_notes?: string;
+}
+
 export interface BrandProfile {
   id: number;
   user_id: number;

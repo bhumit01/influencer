@@ -11,6 +11,7 @@ interface AuthState {
   isAuthenticated: () => boolean;
   isBrand: () => boolean;
   isInfluencer: () => boolean;
+  isAdmin: () => boolean;
 }
 
 export const useAuth = create<AuthState>((set, get) => ({
@@ -27,4 +28,5 @@ export const useAuth = create<AuthState>((set, get) => ({
   isAuthenticated: () => get().user !== null,
   isBrand: () => get().user?.role === 'brand',
   isInfluencer: () => get().user?.role === 'influencer',
+  isAdmin: () => get().user?.role === 'admin',
 }));

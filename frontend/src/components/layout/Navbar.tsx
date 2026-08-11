@@ -50,7 +50,7 @@ export function Navbar() {
             {user ? (
               <>
                 <Link
-                  to={user.role === 'brand' ? '/brand/dashboard' : '/influencer/dashboard'}
+                  to={user.role === 'brand' ? '/brand/dashboard' : user.role === 'admin' ? '/admin/dashboard' : '/influencer/dashboard'}
                 >
                   <Button variant="ghost" size="sm" leftIcon={<LayoutDashboard className="h-4 w-4" />}>
                     Dashboard
@@ -58,7 +58,7 @@ export function Navbar() {
                 </Link>
                 <div className="flex items-center gap-2 pl-3 border-l border-neutral-200">
                   <Link
-                    to={user.role === 'brand' ? '/brand/dashboard' : '/influencer/dashboard'}
+                    to={user.role === 'brand' ? '/brand/dashboard' : user.role === 'admin' ? '/admin/dashboard' : '/influencer/dashboard'}
                     className="h-8 w-8 rounded-full bg-gradient-to-br from-brand-400 to-violet-500 flex items-center justify-center text-white text-xs font-semibold"
                   >
                     {user.email.charAt(0).toUpperCase()}
@@ -113,7 +113,7 @@ export function Navbar() {
             {user ? (
               <>
                 <Link
-                  to={user.role === 'brand' ? '/brand/dashboard' : '/influencer/dashboard'}
+                  to={user.role === 'brand' ? '/brand/dashboard' : user.role === 'admin' ? '/admin/dashboard' : '/influencer/dashboard'}
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-neutral-600 hover:text-neutral-900 rounded-lg hover:bg-neutral-50"
                 >
